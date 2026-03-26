@@ -1,0 +1,23 @@
+In this lesson we worked with the tidyverse, which is a collection of R packages designed to make data manipulation and analysis easier. When loading it with library(tidyverse), several packages are attached automatically, including dplyr, ggplot2, tidyr, readr, tibble, stringr, forcats, lubridate, and purrr. These packages are designed to work together, which makes it easier to manipulate data and then visualize it without switching between very different syntaxes.
+
+The dataset used in the tutorial was Bull_richness.csv, a microbiome dataset containing fungal species richness measurements along with metadata such as crop type, treatment system, fungicide use, growth stage, and sampling information. After loading the data with read.csv(), we inspected its structure using str(), which showed that the dataset contains 287 observations and 16 variables.
+
+One of the first operations demonstrated was column selection using select() from the dplyr package. This function allows us to keep only the columns we need. For example, a new dataset (microbiome.fungi2) was created by selecting columns such as SampleID, Crop, and the range Compartment:Fungicide, along with richness. Using a range like this is convenient when the columns appear consecutively in the dataset.
+
+We also learned how to subset rows using filter(). This function lets us select rows based on conditions. For example, we filtered the dataset to include only samples with Treatment == "Conv.". More complex filtering can be done using logical operators such as & (AND) or | (OR). For instance, we filtered rows where both the treatment was conventional and the fungicide was "C".
+
+Another important function was mutate(), which allows us to create new columns. In the example, we created a new variable called logRich by applying a log transformation to the richness column (log(richness)). We also created a combined variable using paste() to merge Crop and Treatment into a single column.
+
+A key concept introduced in the tidyverse workflow is the pipe operator %>%. The pipe passes the output of one function directly into the next, which allows us to chain multiple operations together. For example, we selected columns, filtered the data, created a new variable, and displayed the first rows all within one pipeline. This makes the code easier to read because it follows the logical order of the analysis steps.
+
+We then used summarise() to calculate summary statistics. For example, we calculated the mean of the log-transformed richness values. Additional statistics such as the sample size (n) and standard deviation (sd) were also calculated, and the standard error was obtained by dividing the standard deviation by the square root of the sample size.
+
+To calculate statistics for different experimental groups, we used group_by(). By grouping the data by Treatment and Fungicide, we could calculate mean richness and other statistics for each combination of factors. This allowed us to compare how fungal richness differed between treatments and fungicide conditions.
+
+Another useful concept was joining datasets. The tutorial demonstrated how datasets can be merged using functions like left_join(), right_join(), inner_join(), and full_join(). In the example, the dataset was split into a metadata table and a richness table and then recombined using left_join() based on the common column SampleID.
+
+Finally, we looked at pivoting data using pivot_wider() from the tidyr package. This function converts long-format data into wide format. In the example, the mean richness values for fungicide treatments were converted so that each fungicide category became its own column. This made it easy to calculate the difference between control and fungicide treatments using mutate(diff.fungicide = C - F).
+
+The final step was plotting the results using ggplot2. The difference in mean species richness between control and fungicide treatments was visualized for the two management systems (Conventional and No-till). The resulting plot showed that the difference in richness was larger under conventional management than under no-till, suggesting that agricultural management practices may influence how fungal communities respond to fungicide application.
+
+Overall, the tidyverse provides a clear workflow for data cleaning, transformation, summarization, and visualization, allowing complex analyses to be performed with relatively readable and organized code.

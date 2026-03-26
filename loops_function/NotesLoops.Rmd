@@ -1,0 +1,63 @@
+---
+title: "Loops and Functions"
+author: "Jacobo"
+date: "2026-03-19"
+output: html_document
+---
+
+First function we do is converting ºF to ºC to avoid copy pasting or defining a new object each time
+```{r}
+F_to_C <- function(fahrenheit_temp){
+  celsius <- (5*(fahrenheit_temp - 32)/9)
+  return(celsius)
+}
+#we call the function
+F_to_C(32)
+```
+
+Function to convert back ºC to ºF
+```{r}
+C_to_F <- function(celsius_temp){
+  fahrenheit <- celsius_temp*9/5+32
+  return(fahrenheit)
+}
+
+#and call the function
+C_to_F(0)
+```
+
+Testing the combination of rep and seq
+```{r}
+rep(seq(from = 0, to = 10, by = 2), times = 3, each = 2)
+```
+
+A simple for loop:
+```{r}
+for (i in 1:10) {
+print(i*2)  
+}
+```
+
+Now a for loop that uses a function we previously created:
+```{r}
+for (i in -30:100){
+  result <- F_to_C(i)
+  print(result)
+}
+```
+
+But now we want to actually save somewhere the outcome so we create a Null object that we will be appending the outcome of the iteration each time:
+```{r}
+celcius.df <- NULL 
+for (i in -30:100){   
+result_i <- data.frame(F_to_C(i), i)   
+celcius.df <- rbind.data.frame(celcius.df, result_i) 
+}
+head(celcius.df)
+```
+
+
+
+
+
+
