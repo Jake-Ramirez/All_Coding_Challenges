@@ -3,10 +3,11 @@ title: "Linear Models Challenge VII"
 author: "Jacobo Dobon"
 date: "2026-04-02"
 output: 
+  html_document: default
   md_document:
     variant: markdown_github
-  html_document: default
 ---
+[Link to my Github <3](https://github.com/Jake-Ramirez/All_Coding_Challenges/tree/main/Linear_models)
 
 ### 1. Read in the data called “PlantEmergence.csv” using a relative file path and load the following libraries. tidyverse, lme4, emmeans, multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting  and Rep into factors using the function as.factor
 
